@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2023-10-13T10:19:51Z"
+  generation: 1
+  labels:
+    app: sanket
+  name: sanket
+  namespace: default
+  resourceVersion: "7355"
+  uid: 55aad6db-6b16-4a03-aa12-80a46dfa3b7c
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: sanket
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sanket
+    spec:
+      containers:
+      - image: httpd
+        imagePullPolicy: Always
+        name: httpd
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2023-10-13T10:19:52Z"
+    lastUpdateTime: "2023-10-13T10:19:52Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2023-10-13T10:19:51Z"
+    lastUpdateTime: "2023-10-13T10:19:52Z"
+    message: ReplicaSet "sanket-867df55d7c" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
